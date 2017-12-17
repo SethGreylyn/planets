@@ -1,0 +1,25 @@
+{
+  "name": "planets",
+  "version": "1.0.0",
+  "description": "A 2D orbital mechanics/gravity simulator game written purely in JavaScript and HTML5.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run start-server & npm run gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SethGreylyn/planets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SethGreylyn/planets/issues"
+  },
+  "homepage": "https://github.com/SethGreylyn/planets#readme",
+  "devDependencies": {
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
+    "gulp-connect": "^5.0.0"
+  }
+}
