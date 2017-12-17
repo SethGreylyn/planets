@@ -1,3 +1,5 @@
+import Planet from './planet';
+
 let canvas = document.getElementById("aether");
 var ctx = canvas.getContext("2d");
 
