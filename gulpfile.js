@@ -1,3 +1,6 @@
+/**
+ * GULPFILE MODIFIED FROM http://ramkulkarni.com/blog/setting-up-es6-babel-gulp/
+ */
 //Include required modules
 var gulp = require("gulp"),
     babelify = require('babelify'),
