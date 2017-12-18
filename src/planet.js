@@ -4,8 +4,9 @@
  * gravitational attraction to other Planets.
  */
 export default class Planet {
-    constructor (x, y) {
+    constructor (x, y, velX = 0, velY = 0) {
         this.pos = {x, y};
+        this.vel = {velX, velY};
 
         // Experimental constants, will be dynamised later.
         this.colour = "green";
@@ -27,7 +28,7 @@ export default class Planet {
         return this.colour;
     }
 
-    move(newX, newY) {
-        this.pos.x = newX, this.pos.y = newY;
+    move() {
+        this.pos.x += this.vel.x, this.pos.y += this.vel.y;
     }
 }

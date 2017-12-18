@@ -1,8 +1,7 @@
 import Planet from './planet';
+import Physics from './physics';
 const planets = [];
 const pxPerUnit = 10;
-const dx = 0;
-const dy = 0;
 let canvas = document.getElementById("aether");
 let ctx = canvas.getContext("2d");
 
@@ -10,24 +9,9 @@ function gameInit() {
     planets.push(new Planet(canvas.width/2, canvas.height/2));
 }
 
-// TODO: Add vectors for movement to planets to preview next move, physics to alter the vectors, etc.
-function move(planet) {
-    const pos = planet.getPosition();
-    const pixelRadius = planet.getRadius() * pxPerUnit;
-    let newX = pos.x + dx;
-    let newY = pos.y + dy;
-    if (newX > canvas.width - pixelRadius) {
-        newX = pixelRadius;
-    }
-    if (newY > canvas.height - pixelRadius) {
-        newY = pixelRadius;
-    }
-    planet.move(newX, newY);
-}
-
 function drawPlanets() {
     planets.forEach(planet => {
-        move(planet);
+        planet.move();
         const pos = planet.getPosition();
         const radius = planet.getRadius();
         ctx.beginPath();
@@ -38,8 +22,19 @@ function drawPlanets() {
     });
 }
 
+function setPlanetVelocities() {
+    plantes.forEach(self => {
+        planets.forEach(planet => {
+            if (self.getPosition() !== planet.getPosition()) {
+                Physics.gravitate(self, planet);
+            }
+        });
+    });
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setPlanetVelocities();
     drawPlanets();
 }
 
