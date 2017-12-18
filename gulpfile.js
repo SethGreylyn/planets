@@ -1,8 +1,9 @@
 /**
  * GULPFILE MODIFIED FROM http://ramkulkarni.com/blog/setting-up-es6-babel-gulp/
  */
+'use strict';
 //Include required modules
-var gulp = require("gulp"),
+let gulp = require("gulp"),
     babelify = require('babelify'),
     browserify = require("browserify"),
     connect = require("gulp-connect"),
@@ -37,7 +38,6 @@ gulp.task("build", function(){
 gulp.task("startServer", function(){
     connect.server({
         root : "./dist",
-        livereload : true,
         port : 9001
     });
 });

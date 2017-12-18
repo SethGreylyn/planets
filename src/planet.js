@@ -8,8 +8,9 @@ export default class Planet {
         this.pos = {x, y};
 
         // Experimental constants, will be dynamised later.
+        this.colour = "green";
         this.mass = 1;
-        this.radius = 1;
+        this.radius = 3;
         this.area = Math.PI * Math.pow(this.radius, 2);
         this.density = this.mass / this.volume;
     }
@@ -20,6 +21,10 @@ export default class Planet {
 
     getRadius() {
         return this.radius;
+    }
+
+    getColour() {
+        return this.colour;
     }
 
     move(newX, newY) {
