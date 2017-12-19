@@ -17,21 +17,23 @@ gulp.task("html", function() {
 });
 
 gulp.task("tscompile", function() {
-
+    return gulp.src(["./src/*.ts"])
+     .pipe(typescript())
+     .pipe(gulp.dest('./tsDist'));
 });
 
 //Convert ES6 code in all js files in src folder and copy to
 //dist folder as index.js
 gulp.task("build", function() {
     return browserify({
-        entries: ["./src/game.js"]
+        entries: ["./tsDist/game.js"]
     })
     .transform(babelify.configure({
         presets : ["es2015"]
     }))
     .bundle()
     .pipe(source("index.js"))
-    .pipe(gulp.dest("./dist"));
+    .pipe(gulp.dest("dist"));
 });
 
 //Start a test server with doc root at build folder and

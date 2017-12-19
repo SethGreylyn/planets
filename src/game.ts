@@ -2,7 +2,7 @@ import Planet from './planet';
 import Physics from './physics';
 const planets = [];
 const pxPerUnit = 10;
-let canvas = document.getElementById("aether");
+let canvas = <any>document.getElementById("aether"); // TODO: Fix 'any'
 let ctx = canvas.getContext("2d");
 
 function gameInit() {
