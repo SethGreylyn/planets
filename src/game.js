@@ -23,13 +23,7 @@ function drawPlanets() {
 }
 
 function setPlanetVelocities() {
-    plantes.forEach(self => {
-        planets.forEach(planet => {
-            if (self.getPosition() !== planet.getPosition()) {
-                Physics.gravitate(self, planet);
-            }
-        });
-    });
+    Physics.gravitate(planets);
 }
 
 function draw() {
