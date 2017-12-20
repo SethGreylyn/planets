@@ -1,31 +1,37 @@
-import { Vector, Colour } from "./types/types";
+import { Colour } from "./types/types";
+import Vector from "./vector";
 /**
  * A Planet object is the basic unit of the game. It is a circular body
  * drawn on the canvas, with a radius, mass, and density which affect its
  * gravitational attraction to other Planets.
  */
 export default class Planet {
-    pos: Vector;
-    vel: Vector;
-    colour: Colour;
-    mass: number;
-    radius: number;
-    area: number;
-    density: number;
-    constructor (x, y, velX = 0, velY = 0) {
-        this.pos = {x, y};
-        this.vel = {x: velX, y: velY};
+    private pos: Vector;
+    private vel: Vector;
+    private colour: Colour;
+    private mass: number;
+    private radius: number;
+    private area: number;
+    private density: number;
+
+    constructor (x: number, y: number, mass: number, radius: number, colour: Colour = "green", velX: number = 0, velY: number = 0) {
+        this.pos = new Vector(x, y);
+        this.vel = new Vector(velX, velY);
 
         // Experimental constants, will be dynamised later.
-        this.colour = "green";
-        this.mass = 1;
-        this.radius = 3;
+        this.colour = colour;
+        this.mass = mass;
+        this.radius = radius;
         this.area = Math.PI * Math.pow(this.radius, 2);
         this.density = this.mass / this.area;
     }
 
     getPosition(): Vector {
         return this.pos;
+    }
+
+    getMass(): number {
+        return this.mass;
     }
 
     getRadius(): number {
@@ -40,15 +46,15 @@ export default class Planet {
         return this.vel;
     }
 
-    setVelocity({x, y}): void {
-        this.vel = {x, y};
+    setVelocity(vector: Vector): void {
+        this.vel = vector;
     }
 
-    addToVelocity({newX, newY}): void {
-        this.vel = {x: this.vel.x + newX, y: this.vel.y + newY};
+    addToVelocity(vector: Vector): void {
+        this.vel.add(vector);
     }
 
     move(): void {
-        this.pos.x += this.vel.x, this.pos.y += this.vel.y;
+        this.pos.add(this.vel);
     }
 }

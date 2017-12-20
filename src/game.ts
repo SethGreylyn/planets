@@ -1,12 +1,14 @@
 import Planet from './planet';
 import Physics from './physics';
-const planets = [];
+const planets: Planet[] = [];
 const pxPerUnit = 10;
-let canvas = <any>document.getElementById("aether"); // TODO: Fix 'any'
+let canvas = <HTMLCanvasElement>document.getElementById("aether");
 let ctx = canvas.getContext("2d");
 
 function gameInit() {
-    planets.push(new Planet(canvas.width/2, canvas.height/2));
+    planets.push(new Planet(canvas.width/2 - 20, canvas.height/2, 1, 1));
+    planets.push(new Planet(canvas.width/2 + 20, 0, 1, 1));
+    planets.push(new Planet(canvas.width, canvas.height, 1, 1));
 }
 
 function drawPlanets() {
@@ -15,7 +17,7 @@ function drawPlanets() {
         const pos = planet.getPosition();
         const radius = planet.getRadius();
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, radius * pxPerUnit, 0, 2*Math.PI, false);
+        ctx.arc(pos.getX(), pos.getY(), radius * pxPerUnit, 0, 2*Math.PI, false);
         ctx.fillStyle = planet.getColour();
         ctx.fill();
         ctx.closePath();
