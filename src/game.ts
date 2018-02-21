@@ -8,7 +8,6 @@ let ctx = canvas.getContext("2d");
 function gameInit() {
     planets.push(new Planet(canvas.width/2 - 20, canvas.height/2, 1, 1));
     planets.push(new Planet(canvas.width/2 + 20, 0, 1, 1));
-    planets.push(new Planet(canvas.width, canvas.height, 1, 1));
 }
 
 function drawPlanets() {

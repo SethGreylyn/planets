@@ -14,8 +14,8 @@ export default class Physics {
         const force = G * (m1*m2)/rSquared;
         const a1 = force/m1;
         const a2 = force/m2;
-        const d1Vector = Vector.unitVectorBetween(pos1, pos2);
-        const d2Vector = Vector.unitVectorBetween(pos2, pos1);
+        const d1Vector = Vector.unitVectorBetween(pos1, pos2).scale(a1);
+        const d2Vector = Vector.unitVectorBetween(pos2, pos1).scale(a2);
         planet1.addToVelocity(d1Vector);
         planet2.addToVelocity(d2Vector);
     }

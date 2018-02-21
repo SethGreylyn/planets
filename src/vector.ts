@@ -14,9 +14,16 @@ export default class Vector {
         return this.y;
     }
 
-    add(vector: Vector) {
+    add(vector: Vector): Vector {
         this.x += vector.getX();
         this.y += vector.getY();
+        return this;
+    }
+
+    scale(scalar: number): Vector {
+        this.x *= scalar;
+        this.y *= scalar;
+        return this;
     }
 
     static distance(vector1, vector2): number {
