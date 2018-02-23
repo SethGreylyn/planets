@@ -6,12 +6,16 @@ export default class Vector {
         this.y = y;
     }
 
-    getX() {
+    getX(): number {
         return this.x;
     }
 
-    getY() {
+    getY(): number {
         return this.y;
+    }
+
+    getLength(): number {
+        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
     }
 
     add(vector: Vector): Vector {

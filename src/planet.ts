@@ -38,6 +38,10 @@ export default class Planet {
         return this.radius;
     }
 
+    getArea(): number {
+        return this.area;
+    }
+
     getColour(): Colour {
         return this.colour;
     }
