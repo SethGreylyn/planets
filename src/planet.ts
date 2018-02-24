@@ -6,6 +6,10 @@ import Vector from "./vector";
  * gravitational attraction to other Planets.
  */
 export default class Planet {
+    /** Static constants */
+    // The number of pixels consumed in a linear unit of length
+    static readonly pxPerUnit = 10;
+
     private pos: Vector;
     private vel: Vector;
     private colour: Colour;
@@ -38,6 +42,10 @@ export default class Planet {
         return this.radius;
     }
 
+    getRadiusInPixels(): number {
+        return this.radius * Planet.pxPerUnit;
+    }
+
     getArea(): number {
         return this.area;
     }
@@ -61,4 +69,15 @@ export default class Planet {
     move(): void {
         this.pos.add(this.vel);
     }
+
+    draw(ctx: CanvasRenderingContext2D): void {
+        const pos = this.getPosition();
+        const pixelRadius = this.getRadiusInPixels();
+        ctx.beginPath();
+        ctx.arc(pos.getX(), pos.getY(), pixelRadius, 0, 2*Math.PI, false);
+        ctx.fillStyle = this.getColour();
+        ctx.fill();
+        ctx.closePath();
+    }
+
 }

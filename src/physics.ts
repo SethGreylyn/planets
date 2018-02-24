@@ -1,7 +1,7 @@
 import Vector from "./vector";
 import Planet from "./planet";
 const G = 0.25;
-const COLLISION_FACTOR = 1;
+const COLLISION_FACTOR = 0.75;
 
 /** This static class provides a library of physics functions, using Newtonian mechanics. */
 export default class Physics {
@@ -19,12 +19,15 @@ export default class Physics {
     }
 
     static doPlanetsCollide(planet1: Planet, planet2: Planet): boolean {
-        // DEBUG: Seems to only trigger when a centre touches an edge.
         const distanceBetweenCentres = Vector.distance(planet1.getPosition(), planet2.getPosition());
-        return (planet1.getRadius() + planet2.getRadius()) > distanceBetweenCentres;
+        return (planet1.getRadiusInPixels() + planet2.getRadiusInPixels()) > distanceBetweenCentres;
     }
 
     static gravitatePair(planet1: Planet, planet2: Planet) {
+        if (planet1 == undefined || planet2 == undefined) {
+            return;
+        }
+
         const m1 = planet1.getMass();
         const m2 = planet2.getMass();
         const pos1 = planet1.getPosition();
@@ -36,26 +39,23 @@ export default class Physics {
         const d1Vector = Vector.unitVectorBetween(pos1, pos2).scale(a1);
         const d2Vector = Vector.unitVectorBetween(pos2, pos1).scale(a2);
 
-        console.log("d1Vector length: " + d1Vector.getLength());
-        console.log("d2Vector length: " + d2Vector.getLength());
-
         planet1.addToVelocity(d1Vector);
         planet2.addToVelocity(d2Vector);
-
-
     }
 
     static gravitate(planets: Planet[]) {
         for (let outerIndex = planets.length - 1; outerIndex >= 0; --outerIndex) {
-            const outerPlanet = planets[outerIndex];
+            let outerPlanet = planets[outerIndex];
             for (let innerIndex = outerIndex - 1; innerIndex >= 0; --innerIndex) {
                 let innerPlanet = planets[innerIndex];
                 if (this.doPlanetsCollide(outerPlanet, innerPlanet)) {
                     planets.splice(outerIndex, 1);
                     planets.splice(innerIndex, 1, this.collidePlanets(outerPlanet, innerPlanet));
+                    outerPlanet = null;
                     innerPlanet = planets[innerIndex];
+                } else {
+                    this.gravitatePair(outerPlanet, innerPlanet);
                 }
-                this.gravitatePair(outerPlanet, innerPlanet);
             }
         }
     }

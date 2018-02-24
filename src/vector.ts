@@ -1,6 +1,13 @@
+/**
+ * A custom-built class for two-dimensional vectors, whose coordinates (and therefore lengths)
+ * are implied by the context in which the vectors are employed. In the planets gravity sim,
+ * the vectors exist in pixel space, and therefore planetary units should be converted to pixels
+ * before being subject to vector calculations.
+ */
 export default class Vector {
     private x: number;
     private y: number;
+
     constructor(x,y) {
         this.x = x;
         this.y = y;
