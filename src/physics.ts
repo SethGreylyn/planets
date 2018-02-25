@@ -15,7 +15,7 @@ export default class Physics {
         const newVelX = (planet1.getMass() * planet1.getVelocity().getX()) + (planet2.getMass() * planet2.getVelocity().getX());
         const newVelY = (planet1.getMass() * planet1.getVelocity().getY()) + (planet2.getMass() * planet2.getVelocity().getY());
 
-        return new Planet(midpointX, midpointY, newMass, newRadius, "green", newVelX, newVelY);
+        return new Planet(midpointX, midpointY, newMass, newRadius, newVelX, newVelY);
     }
 
     static doPlanetsCollide(planet1: Planet, planet2: Planet): boolean {

@@ -7,22 +7,36 @@ import Vector from "./vector";
  */
 export default class Planet {
     /** Static constants */
+
     // The number of pixels consumed in a linear unit of length
     static readonly pxPerUnit = 10;
 
+    /** Private members */
+
+    // The pixel position of the planet
     private pos: Vector;
+
+    // The velocity of the planet, in pixels per draw
     private vel: Vector;
+
+    // The planet's colour
     private colour: Colour;
+
+    // The planet's mass, in Earth masses
     private mass: number;
+
+    // The planet's radius, in Earth radii
     private radius: number;
+
+    // The planet's area
     private area: number;
+
+    // The planet's density
     private density: number;
 
-    constructor (x: number, y: number, mass: number, radius: number, colour: Colour = "green", velX: number = 0, velY: number = 0) {
+    constructor (x: number, y: number, mass: number, radius: number, velX: number = 0, velY: number = 0, colour: Colour = "green") {
         this.pos = new Vector(x, y);
         this.vel = new Vector(velX, velY);
-
-        // Experimental constants, will be dynamised later.
         this.colour = colour;
         this.mass = mass;
         this.radius = radius;
@@ -59,7 +73,7 @@ export default class Planet {
     }
 
     setVelocity(vector: Vector): void {
-        this.vel = vector;
+        this.vel = new Vector(vector.getX(), vector.getY());
     }
 
     addToVelocity(vector: Vector): void {
