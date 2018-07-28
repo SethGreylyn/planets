@@ -18,16 +18,9 @@
   },
   "homepage": "https://github.com/SethGreylyn/planets#readme",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
-    "babelify": "^8.0.0",
-    "browserify": "^14.5.0",
-    "gulp": "^4.0.0",
-    "gulp-connect": "^5.5.0",
-    "gulp-tsc": "^1.3.2",
-    "typescript": "^2.9.2"
-  },
-  "dependencies": {
-    "vinyl-source-stream": "^1.1.0"
+    "ts-loader": "^4.4.2",
+    "typescript": "^2.9.2",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
   }
 }
