@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "tsDist",
+        "outDir": "./dist/js/",
         "allowJs": true,
         "module": "es6",
         "target": "es6"
