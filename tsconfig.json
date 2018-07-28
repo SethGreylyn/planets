@@ -3,12 +3,12 @@
         "outDir": "./dist/js/",
         "allowJs": true,
         "module": "es6",
-        "target": "es6"
+        "target": "es6",
+        "noImplicitAny": true
     },
     "exclude": [
         "node_modules",
-        "tsDist",
         "dist",
-        "gulpfile.js"
+        "webpack.config.js"
     ]
 }
