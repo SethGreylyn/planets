@@ -1,16 +1,16 @@
-import Planet from './planet';
-import Physics from './physics';
+import Physics from "./physics";
+import Planet from "./planet";
 const planets: Planet[] = [];
-let canvas = <HTMLCanvasElement>document.getElementById("aether");
-let ctx = canvas.getContext("2d");
+const canvas = document.getElementById("aether") as HTMLCanvasElement;
+const ctx = canvas.getContext("2d");
 
 function gameInit() {
-    planets.push(new Planet(canvas.width/2 - 50, canvas.height/2, 1, 1, 0, 0.025));
-    planets.push(new Planet(canvas.width/2 + 50, canvas.height/2, 1, 1, 0, -0.025));
+    planets.push(new Planet(canvas.width / 2 - 50, canvas.height / 2, 1, 1, 0, 0.025));
+    planets.push(new Planet(canvas.width / 2 + 50, canvas.height / 2, 1, 1, 0, -0.025));
 }
 
 function drawPlanets() {
-    planets.forEach(planet => {
+    planets.forEach((planet) => {
         planet.move();
         planet.draw(ctx);
     });

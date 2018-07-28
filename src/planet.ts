@@ -9,7 +9,7 @@ export default class Planet {
     /** Static constants */
 
     // The number of pixels consumed in a linear unit of length
-    static readonly pxPerUnit = 10;
+    private static readonly pxPerUnit = 10;
 
     /** Private members */
 
@@ -34,7 +34,8 @@ export default class Planet {
     // The planet's density
     private density: number;
 
-    constructor (x: number, y: number, mass: number, radius: number, velX: number = 0, velY: number = 0, colour: Colour = "green") {
+    constructor(x: number, y: number, mass: number, radius: number,
+                velX: number = 0, velY: number = 0, colour: Colour = "green") {
         this.pos = new Vector(x, y);
         this.vel = new Vector(velX, velY);
         this.colour = colour;
@@ -44,54 +45,53 @@ export default class Planet {
         this.density = this.mass / this.area;
     }
 
-    getPosition(): Vector {
+    public getPosition(): Vector {
         return this.pos;
     }
 
-    getMass(): number {
+    public getMass(): number {
         return this.mass;
     }
 
-    getRadius(): number {
+    public getRadius(): number {
         return this.radius;
     }
 
-    getRadiusInPixels(): number {
+    public getRadiusInPixels(): number {
         return this.radius * Planet.pxPerUnit;
     }
 
-    getArea(): number {
+    public getArea(): number {
         return this.area;
     }
 
-    getColour(): Colour {
+    public getColour(): Colour {
         return this.colour;
     }
 
-    getVelocity(): Vector {
+    public getVelocity(): Vector {
         return this.vel;
     }
 
-    setVelocity(vector: Vector): void {
+    public setVelocity(vector: Vector): void {
         this.vel = new Vector(vector.getX(), vector.getY());
     }
 
-    addToVelocity(vector: Vector): void {
+    public addToVelocity(vector: Vector): void {
         this.vel.add(vector);
     }
 
-    move(): void {
+    public move(): void {
         this.pos.add(this.vel);
     }
 
-    draw(ctx: CanvasRenderingContext2D): void {
+    public draw(ctx: CanvasRenderingContext2D): void {
         const pos = this.getPosition();
         const pixelRadius = this.getRadiusInPixels();
         ctx.beginPath();
-        ctx.arc(pos.getX(), pos.getY(), pixelRadius, 0, 2*Math.PI, false);
+        ctx.arc(pos.getX(), pos.getY(), pixelRadius, 0, 2 * Math.PI, false);
         ctx.fillStyle = this.getColour();
         ctx.fill();
         ctx.closePath();
     }
-
 }

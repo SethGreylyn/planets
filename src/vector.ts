@@ -5,6 +5,17 @@
  * before being subject to vector calculations.
  */
 export default class Vector {
+    public static distance(vector1: Vector, vector2: Vector): number {
+        return Math.sqrt(Math.pow(vector1.getX() - vector2.getX(), 2) + Math.pow(vector1.getY() - vector2.getY(), 2));
+    }
+
+    public static unitVectorBetween(vector1: Vector, vector2: Vector): Vector {
+        const dist = Vector.distance(vector1, vector2);
+        const x = (vector2.getX() - vector1.getX()) / dist;
+        const y = (vector2.getY() - vector1.getY()) / dist;
+        return new Vector(x, y);
+    }
+
     private x: number;
     private y: number;
 
@@ -13,38 +24,27 @@ export default class Vector {
         this.y = y;
     }
 
-    getX(): number {
+    public getX(): number {
         return this.x;
     }
 
-    getY(): number {
+    public getY(): number {
         return this.y;
     }
 
-    getLength(): number {
+    public getLength(): number {
         return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
     }
 
-    add(vector: Vector): Vector {
+    public add(vector: Vector): Vector {
         this.x += vector.getX();
         this.y += vector.getY();
         return this;
     }
 
-    scale(scalar: number): Vector {
+    public scale(scalar: number): Vector {
         this.x *= scalar;
         this.y *= scalar;
         return this;
-    }
-
-    static distance(vector1, vector2): number {
-        return Math.sqrt(Math.pow(vector1.getX() - vector2.getX(), 2) + Math.pow(vector1.getY() - vector2.getY(), 2));
-    }
-
-    static unitVectorBetween(vector1: Vector, vector2: Vector): Vector {
-        const dist = Vector.distance(vector1, vector2);
-        const x = (vector2.getX() - vector1.getX())/dist;
-        const y = (vector2.getY() - vector1.getY())/dist;
-        return new Vector(x, y);
     }
 }
